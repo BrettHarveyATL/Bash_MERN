@@ -2,11 +2,11 @@
 echo "<<----------------------->>"
 echo "What would you like to name your model?"
 echo "<<----------------------->>"
+echo "DO NOT MAKE it PRURAL!!!!!!!!!!!!!!!!!!!!!!!!!"
 read input
 echo "<<----------------------->>"
 #makes all input lowercase
 model_name=${input,,}
-eval "$(./createMern.sh)"
 `touch server/controllers/$model_name.controller.js`
 `touch server/models/$model_name.model.js`
 `touch server/routes/$model_name.routes.js`
@@ -55,6 +55,7 @@ const Schema = mongoose.Schema;
 
 const ${model_name^}Schema = new mongoose.Schema({
     //new data
+
 });
 
 const ${model_name^} = mongoose.model("${model_name^}", ${model_name^}Schema);
@@ -79,6 +80,102 @@ require("./server/routes/${model_name}.routes")(app);
 EOL
 sed -i '/new data/ r newdata.txt' ./server.js
 rm newdata.txt
+
+echo "We are now bulding the outline for your front end with the model"
+
+cat >> client/src/views/Single${model_name^}.js << EOL
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const oneSingle${model_name^}= props =>{
+    const [${model_name}, set${model_name^}] = useState;
+    useEffect(()=>{
+        axios.get('http://localhost:8000/api/${model_name}/'+props.id)
+            .then(res=> set${model_name^}(res.data.${model_name}))
+            .catch(err=> console.log(err))
+    }, [props.id])
+
+    return(
+        <div>
+            {/* //new h1*/}
+        </div>
+    )
+}
+
+export default oneSingle${model_name^};
+EOL
+
+cat >> client/src/views/All${model_name^}s.js << EOL
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const OneSingle${model_name^}= props =>{
+    const [${model_name}, set${model_name^}] = useState({});
+    useEffect(()=>{
+        axios.get('http://localhost:8000/api/${model_name}/'+props.id)
+            .then(res=> set${model_name^}(res.data.${model_name}))
+            .catch(err=> console.log(err))
+    }, [props.id])
+
+    return(
+        <div>
+            <h1>All ${model_name^}s</h1>
+            <table className="">
+                <thead>
+
+                    {/* new th */}
+
+                </thead>
+                <tbody>
+                {
+                    props.${model_name}s.map((${model_name}, key) => {
+                        return <tr key={key}> 
+
+                        {/* new td */}
+
+                        <button onClick={()=>props.onDeleteHander(${model_name}._id)} className="btn btn-danger">Delete</button></tr>
+                    })
+                }
+                </tbody>
+            </table>
+        </div>
+    )
+}
+
+export default OneSingle${model_name^};
+EOL
+
+cat >> newdata.txt << EOL
+                <All${model_name^}s ${model_name}s={${model_name}s} onDeleteHander={on${model_name^}DeleteHander}/>
+EOL
+sed -i '/new route/ r newdata.txt' client/src/App.js
+rm newdata.txt
+
+cat >> newdata.txt << EOL
+    const on${model_name^}DeleteHander = _id =>{
+        axios.delete("http://localhost:8000/api/${model_name}s/"+_id)
+            .then(res=>{
+            console.log(res)
+            setLoaded(false);
+        })
+        .catch(err => console.log(err))
+    }
+EOL
+sed -i '/new handler/ r newdata.txt' client/src/App.js
+rm newdata.txt
+
+cat >> newdata.txt << EOL
+import All${model_name^}s from './views/All${model_name^}s';
+EOL
+sed -i '/new import/ r newdata.txt' client/src/App.js
+rm newdata.txt
+
+cat >> newdata.txt << EOL
+const [${model_name}s, set${model_name^}s] = useState([]);
+EOL
+sed -i '/new state/ r newdata.txt' client/src/App.js
+rm newdata.txt
+
 while true;
 do  
     echo "<<----------------------->>"
