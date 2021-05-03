@@ -11,4 +11,7 @@ Steps before use.
 3. Ensure mongo database is running in a seperate terminal, follow your distro/os instruction for running mongoDB
 4. Create a directory you would like the MERN app to be in.
 5. cd dir
-6. refer to the directory you stored the bash script and run: bash dir/createMern.sh bash createMern.sh (if in local dir of mern project)
+6. Download scripts to project directory and run:
+     
+    bash dir/createMern.sh
+7. Follow the prompts closely
