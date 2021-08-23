@@ -2,7 +2,7 @@
 # Bash_MERN
 Automates the creation of  full stack web application in MERN
 
-CURRENT KNOW BUGS:  If using script to create models, on client/src/views/AllProducts beginning on line 38 will be the models attributes, Will need to move all <th></th> to line 18 and <td></td> to line 26.
+CURRENT KNOW BUGS:  If using script to create models, on client/src/views/AllProducts beginning on line 38 will be the models attributes. Need to move all <th></th> tags to line 18 and <td></td> tags to line 26.
 
 Steps before use. 
 
