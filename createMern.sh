@@ -1,7 +1,5 @@
 #!/bin/bash
 #creates project folder
-mkdir test_bash
-cd test_bash
 #backend intialization
 npm init -y
 npm install mongoose express cors dotenv jsonwebtoken bcrypt cookie-parser
@@ -37,13 +35,13 @@ app.use(express.urlencoded({extended: true}))
 require("./server/routes/user.routes")(app);
 //new data
 
-app.listen(8000, () => console.log('Listening on port:'+port));
+app.listen(port, () => console.log('Listening on port:'+port));
 EOL
 
 cat >> server/config/mongoose.config.js << EOL
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/user_db', {
+mongoose.connect('mongodb://localhost/fast-way-db', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
