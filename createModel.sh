@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "<<----------------------->>"
-echo "What would you like to name your model?"
+echo "What would you like to name your model?\n"
 echo "<<----------------------->>"
 echo "Do not make it plural!!"
 read input
