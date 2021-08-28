@@ -2,7 +2,7 @@
 echo "<<----------------------->>"
 echo "What would you like to name your model?"
 echo "<<----------------------->>"
-echo "DO NOT MAKE it PRURAL!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo "Do not make it plural!!"
 read input
 echo "<<----------------------->>"
 #makes all input lowercase
